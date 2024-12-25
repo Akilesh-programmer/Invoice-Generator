@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scaled=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" type="image/x-icon" href="Images/bill.png">
+        <title>Invoice Generator</title>
+    </head>
+
+    <body>
+        <div class="container">
+        <form id="form" action="preview.html" target="_top">
+            <h1>Invoice Generator</h1>
+            <div class="input-control">
+                <label for="customer_name">Customer Name: </label><br>
+                <input type="text" id="customer_name" name="customer_name" required><br><br>
+
+                <label for="billing_address">Billing Address: </label><br>
+                <input type="text" id="billing_address" name="billing_address" required><br><br>
+
+                <label for="item_description">Item Description: </label><br>
+                <input type="text" id="item_description" name="item_description" required><br><br>
+
+                <label for="quantity">Quantity: </label><br>
+                <input type="number" id="quantity" name="quantity" required><br><br>
+
+                <label for="price_per_unit">Price per unit: </label><br>
+                <input type="number" id="price_per_unit" name="price_per_unit" required><br><br>
+
+                <label for="tax_rate">Tax Rate: </label><br>
+                <input type="number" id="tax_rate" name="tax_rate" required><br><br>
+                
+                <input type="submit" value="Generate Invoice">
+                <button type="reset" onclick="reset_func">Reset</button>
+            </div>
+        </form>
+        </div>
+
+        <script>
+            function reset_func() {
+                document.getElementById('customer_name').value = '';
+                document.getElementById('billing_address').value = '';
+                document.getElementById('item_description').value = '';
+                document.getElementById('quantity').value = '';
+                document.getElementById('price_per_unit').value = '';
+                document.getElementById('tax_rate').value = '';
+                localStorage.clear();
+            }
+        </script>
+    </body>
+</html>

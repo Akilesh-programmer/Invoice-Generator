@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scaled=1.0">
+        <link rel="icon" type="image/x-icon" href="Images/bill.png">
+        <title>Invoice</title>
+    </head>
+    <body>
+        <p id="content"></p>
+
+        <button onclick="window.print()">Print</button>
+        <button onclick="window.location.href = 'edit.html'">Edit</button>
+
+    </body>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const customer_name = urlParams.get('customer_name');
+        const billing_address = urlParams.get('billing_address');
+        const item_description = urlParams.get('item_description');
+        const quantity = urlParams.get('quantity');
+        const price_per_unit = urlParams.get('price_per_unit');
+        const tax_rate = urlParams.get('tax_rate');
+
+        const total = quantity * price_per_unit;
+        const tax = total * tax_rate / 100;
+        const grand_total = total + tax;
+
+        localStorage.setItem('pass', 'true');
+        localStorage.setItem('customer_name', customer_name);
+        localStorage.setItem('billing_address', billing_address);
+        localStorage.setItem('item_description', item_description);
+        localStorage.setItem('quantity', quantity);
+        localStorage.setItem('price_per_unit', price_per_unit);
+        localStorage.setItem('tax_rate', tax_rate);
+
+        const content = document.getElementById('content');
+        content.innerHTML = `
+            <h1>Invoice</h1>
+            <p>Customer Name: ${customer_name}</p>
+            <p>Billing Address: ${billing_address}</p>
+            <p>Item Description: ${item_description}</p>
+            <p>Quantity: ${quantity}</p>
+            <p>Price per unit: ${price_per_unit}</p>
+            <p>Total: ${total}</p>
+            <p>Tax: ${tax}</p>
+            <p>Grand Total: ${grand_total}</p>
+        `;
+    </script>
+</html>
